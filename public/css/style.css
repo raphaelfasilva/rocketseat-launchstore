@@ -79,6 +79,7 @@ nav.primary ul li a {
     display: flex;
     align-items: center;
     color: white;
+    transition: 400ms;
 }
 
 nav.primary ul li a:hover {
