@@ -3,8 +3,8 @@
     <title>launchstore -Cadastrar produto</title>
 {% endblock %}
 {% block content %}
-    <section class="container form"></section>
-    <form method="POST" action="/products">
+   <section class="container form">
+       <form method="POST" action="/products">
         <div class="header">
             <h3>Cadastrar Produto</h3>
         </div>
@@ -12,5 +12,6 @@
             {% include "products/fields.njk" %}
         </div>
         <button type="submit">Salvar</button>
-    </form>
+       </form>
+   </section>
 {% endblock %}
