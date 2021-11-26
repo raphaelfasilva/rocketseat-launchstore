@@ -6,4 +6,5 @@ routes.get('/ads/create', function(req, res) {
     return res.redirect("/products/create")
 })
 routes.get('/products/create', ProductsController.create)
+routes.post('/products', ProductsController.post)
 module.exports = routes

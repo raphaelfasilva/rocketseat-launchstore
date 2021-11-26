@@ -125,7 +125,7 @@ form .item>div:nth-child(1) {
 
 form .item input[type="text"],
 form .item input[type="number"],
-form .item input textarea,
+form .item textarea,
 form .item select {
     width: 100%;
     padding: 8px 16p;
