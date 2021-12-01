@@ -10,6 +10,7 @@ module.exports = {
         return res.render("products/create.njk", { categoriesSelected })
     },
     async post(req, res) {
+        console.log(req.body)
         let results = await products.create(req.body)
         const productid = results.rows[0].id
         results = await categories.all()

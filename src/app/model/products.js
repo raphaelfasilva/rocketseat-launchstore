@@ -14,8 +14,8 @@ module.exports = {
         RETURNING ID
         `
         const values = [
-            1,
-            1,
+            data.category_id,
+            data.user_id || 1,
             data.name,
             data.description,
             data.old_price || data.price,
