@@ -13,6 +13,7 @@ module.exports = {
         ) VALUES ($1,$2,$3,$4,$5,$6,$7)
         RETURNING ID
         `
+        data.price = data.price.replace(/\D/g, "")
         const values = [
             data.category_id,
             data.user_id || 1,
