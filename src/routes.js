@@ -7,4 +7,5 @@ routes.get('/ads/create', function(req, res) {
 })
 routes.get('/products/create', ProductsController.create)
 routes.post('/products', ProductsController.post)
+routes.get('/produts/:id/edit', ProductsController.edit)
 module.exports = routes
