@@ -1,5 +1,5 @@
 module.exports = {
-    date: function(timestamp) {
+    date(timestamp) {
         const date = new Date(timestamp)
         const year = date.getUTCFullYear()
         const month = `0${date.getUTCMonth() + 1}`.slice(-2)
@@ -9,5 +9,11 @@ module.exports = {
             birthday: `${day}/${month}`,
             format: `${day}/${month}/${year}`
         }
+    },
+    formatPrice(price) {
+        return new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        }).format(price / 100)
     }
 }
