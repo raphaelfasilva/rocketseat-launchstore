@@ -221,3 +221,17 @@ form .item #photos-input {
     opacity: 0;
     cursor: pointer;
 }
+
+form .item #photos-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    width: 100px;
+    margin: 8px 0;
+}
+
+form .item #photos-preview img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
