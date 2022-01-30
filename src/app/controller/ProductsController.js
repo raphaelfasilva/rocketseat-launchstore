@@ -1,5 +1,6 @@
 const categories = require('../model/categories')
 const products = require('../model/products')
+const files = require('../model/files')
 const util = require('../../lib/util')
 module.exports = {
     index(req, res) {
@@ -17,10 +18,15 @@ module.exports = {
                 return res.send("por favor validar todos os campos")
             }
         }
+        if (req.files.lenght == 0) {
+            return res.send("por favor enviar pelo menos 1 imagem")
+
+        }
         let results = await products.create(req.body)
         const productid = results.rows[0].id
-
-        return res.redirect(`/products/${productid}`)
+        const filesPromise = req.files.map(file => files.create({ file, product_id: productid }))
+        await Promise.all(filesPromise)
+        return res.redirect(`/products/${productid}/edit`)
     },
     async edit(req, res) {
         const { id } = req.params
@@ -31,7 +37,13 @@ module.exports = {
         product.old_price = util.formatPrice(product.old_price)
         results = await categories.all()
         const categoriesSelected = results.rows
-        return res.render("products/edit.njk", { product, categoriesSelected })
+        results = await products.files(product.id)
+        let files = results.rows
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public","")}`
+        }))
+        return res.render("products/edit.njk", { product, categoriesSelected, files })
 
     },
     async put(req, res) {
