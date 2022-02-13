@@ -1,3 +1,6 @@
+DROP TABLE files;
+DROP TABLE products;
+DROP TABLE categories;
 CREATE TABLE "products" (
   "id" SERIAL PRIMARY KEY,
   "category_id" int,
@@ -27,4 +30,3 @@ CREATE TABLE "files" (
 ALTER TABLE "products" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id");
 
 ALTER TABLE "files" ADD FOREIGN KEY ("product_id") REFERENCES "products" ("id");
-

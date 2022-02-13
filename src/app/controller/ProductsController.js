@@ -53,14 +53,15 @@ module.exports = {
                 return res.send("por favor validar todos os campos")
             }
         }
+        if (req.files.lenght != 0) {
+            const newFilesPromise = req.files.map(file =>
+                files.create({ file, product_id: req.body.id }))
+        }
         if (req.body.removed_files) {
-            console.log(req.body.removed_files)
             const removedFiles = req.body.removed_files.split(",")
             console.log(removedFiles)
             const lastIndex = 3 - 1
-            console.log(lastIndex)
             removedFiles.splice(lastIndex, 1)
-            console.log(removedFiles)
             const removedFilesPromise = removedFiles.map(id => files.delete(id))
             await Promise.all(removedFilesPromise)
         }
