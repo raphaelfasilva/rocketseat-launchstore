@@ -1,0 +1,29 @@
+{% extends "layout.njk" %}
+{% block header %}
+<title>launchstore - Produto {{product.name}} </title>
+{% endblock %}
+{% block content %}
+<section class="product-single container">
+    <div class="gallery">
+        <img src="http://placehold.it/500X500?text=PRODUTO SEM FOTO" alt="">
+      </div>
+      <div class="info">
+          <h1>Computador</h1>
+      <div class="published">
+          publico xxxxx  ás xxh
+      </div>
+        <div class="description">
+         sdsddsddsdsddsdsds
+      </div>
+      <div class="price-buy">
+          <div class="price">
+              99,00
+          </div>
+          <div class="buy">
+              <button class="button">Comprar</button>
+          </div>
+      </div>
+    </div>
+</section>
+
+{% endblock %}

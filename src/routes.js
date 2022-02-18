@@ -8,6 +8,7 @@ routes.get('/ads/create', function(req, res) {
 })
 routes.get('/products/create', ProductsController.create)
 routes.post('/products', multer.array("photos", 6), ProductsController.post)
+routes.get('/products/:id', ProductsController.show)
 routes.put('/products', multer.array("photos", 6), ProductsController.put)
 routes.get('/products/:id/edit', ProductsController.edit)
 routes.delete('/products', ProductsController.delete)

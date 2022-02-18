@@ -28,6 +28,10 @@ module.exports = {
         await Promise.all(filesPromise)
         return res.redirect(`/products/${productid}/edit`)
     },
+    show(req, res) {
+        const { id } = req.params
+        return res.render("products/show.njk")
+    },
     async edit(req, res) {
         const { id } = req.params
         let results = await products.find(id)
