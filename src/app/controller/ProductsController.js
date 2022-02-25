@@ -1,7 +1,7 @@
 const categories = require('../model/categories')
 const products = require('../model/products')
 const files = require('../model/files')
-const util = require('../../lib/util')
+const { date, formatPrice } = require('../../lib/util')
 module.exports = {
     index(req, res) {
         return res.render("index.njk")
@@ -28,17 +28,27 @@ module.exports = {
         await Promise.all(filesPromise)
         return res.redirect(`/products/${productid}/edit`)
     },
-    show(req, res) {
+    async show(req, res) {
         const { id } = req.params
-        return res.render("products/show.njk")
+        const results = await products.find(id)
+        const product = results.rows[0]
+        if (!results) return res.send("produto não encontrado")
+        const { day, hour, minutes, month } = date(product.updated_at)
+        product.published = {
+            day: `${day}/${month}`,
+            hour: `${hour}h${minutes}`
+        }
+        product.oldPrice = formatPrice(product.old_price)
+        product.price = formatPrice(product.price)
+        return res.render("products/show.njk", { product })
     },
     async edit(req, res) {
         const { id } = req.params
         let results = await products.find(id)
         const product = results.rows[0]
         if (!product) return res.send("product not found")
-        product.price = util.formatPrice(product.price)
-        product.old_price = util.formatPrice(product.old_price)
+        product.price = formatPrice(product.price)
+        product.oldPrice = formatPrice(product.old_price)
         results = await categories.all()
         const categoriesSelected = results.rows
         results = await products.files(product.id)
