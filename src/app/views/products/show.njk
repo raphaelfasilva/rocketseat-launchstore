@@ -12,14 +12,15 @@
              <img src="{{files[0].src}}" alt="{{files[0].name}}">
              {% endif %}
         </div>
-        <div class="galery-preview">
+        <div class="gallery-preview">
             {% for image in files %}
-            <img
-               src="{{image.src}}" 
-               alt="{{image.name}}"
-               {% if loop.index0 ==0 %}
-               class="active"
-               {%endif%}
+               <img
+                src="{{image.src}}" 
+                alt="{{image.name}}"
+                {% if loop.index0 ==0 %}
+                class="active"
+                {%endif%}
+                onclick="ImageGallery.setImage(event)"
                >
             {% endfor %}
         </div>
@@ -52,5 +53,5 @@
       </div>
     </div>
 </section>
-
+<script src="../../js/script2.js"></script>
 {% endblock %}
