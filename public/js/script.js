@@ -95,17 +95,3 @@ const PhotosUpload = {
     }
 
 }
-const ImageGallery = {
-    previews: document.querySelectorAll('.galery-preview img'),
-    setImage(event) {
-        const { target } = event
-        ImageGallery.previews.forEach(preview => preview.classList.remove('active'))
-        target.classList.add('active')
-        ImageGallery.highlight.src = target.src
-    }
-}
-const teste = {
-    getTeste() {
-        console.log("teste")
-    }
-}
